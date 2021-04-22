@@ -1,0 +1,4 @@
+name: ScoreboardManager
+version: ${project.version}
+main: dev.thelecrafter.dimensionz.scoreboardmanager.ScoreboardManagerPlugin
+api-version: 1.16
