@@ -1,5 +1,6 @@
 package dev.thelecrafter.dimensionz.scoreboardmanager;
 
+import dev.thelecrafter.dimensionz.scoreboardmanager.commands.DisableScoreboardCommand;
 import dev.thelecrafter.dimensionz.scoreboardmanager.commands.ScoreboardReloadCommand;
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.DefaultConfig;
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.LocationFileManager;
@@ -22,6 +23,7 @@ public final class ScoreboardManagerPlugin extends JavaPlugin {
         LocationFileManager.setup();
         DefaultConfig.addDefaultValues();
         getCommand("scoreboardreload").setExecutor(new ScoreboardReloadCommand());
+        getCommand("disablescoreboard").setExecutor(new DisableScoreboardCommand());
         Bukkit.getPluginManager().registerEvents(new JoinListener(), INSTANCE);
         Bukkit.getPluginManager().registerEvents(new LocationHandler(), INSTANCE);
         LocationHandler.setup();

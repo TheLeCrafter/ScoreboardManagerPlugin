@@ -6,3 +6,6 @@ commands:
   scoreboardreload:
     permission: scoreboardmanager.command.reload
     usage: /scoreboardreload
+  disablescoreboard:
+    permission: scoreboardmanager.command.disablescoreboard
+    usage: /disablescoreboard
