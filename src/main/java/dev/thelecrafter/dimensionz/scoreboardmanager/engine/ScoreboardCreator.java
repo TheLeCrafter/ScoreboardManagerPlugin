@@ -10,6 +10,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.util.List;
 
+@Deprecated
 public class ScoreboardCreator {
 
     public static Scoreboard createFromConfig() {
