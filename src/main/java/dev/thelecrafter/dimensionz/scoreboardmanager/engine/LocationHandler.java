@@ -53,7 +53,9 @@ public class LocationHandler implements Listener {
         }
         event.getPlayer().getScoreboard();
         if (event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")) != null) {
-            event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")).setPrefix(displayName);
+            if (ScoreboardFileManager.get().getInt("location_line") >= 0) {
+                event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")).setPrefix(displayName);
+            }
         }
     }
 
