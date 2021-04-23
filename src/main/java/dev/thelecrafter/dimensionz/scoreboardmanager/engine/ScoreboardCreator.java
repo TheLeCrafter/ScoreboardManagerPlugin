@@ -22,7 +22,7 @@ public class ScoreboardCreator {
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
         Objective objective = scoreboard.registerNewObjective("managerboard", "dummy", title);
-        int index = lines.size();
+        int index = lines.size() - 1;
         for (String line : lines) {
             objective.getScore(line).setScore(index);
             index--;
