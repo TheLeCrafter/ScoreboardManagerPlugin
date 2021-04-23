@@ -3,14 +3,10 @@ package dev.thelecrafter.dimensionz.scoreboardmanager.engine;
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.scoreboard.DisplaySlot;
-import org.bukkit.scoreboard.Objective;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.*;
 
 import java.util.List;
 
-@Deprecated
 public class ScoreboardCreator {
 
     public static Scoreboard createFromConfig() {
@@ -46,6 +42,9 @@ public class ScoreboardCreator {
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
         Objective objective = scoreboard.registerNewObjective("managerboard", "dummy", title);
+        int index = lines.size() - 1;
+        int colorIndex = 0;
+        ChatColor[] colors = ChatColor.values();
         if (lines.size() > 22) {
             for (int i = 22; i < lines.size(); i++) {
                 lines.remove(i);
@@ -56,7 +55,12 @@ public class ScoreboardCreator {
             if (line.length() > 40) {
                 line = line.substring(0, 40);
             }
-            // To-Do
+            objective.getScore(String.valueOf(colors[colorIndex])).setScore(index);
+            Team team = scoreboard.registerNewTeam("line" + index);
+            team.addEntry(String.valueOf(colors[colorIndex]));
+            team.setPrefix(line);
+            colorIndex++;
+            index--;
         }
         return scoreboard;
     }
