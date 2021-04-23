@@ -3,6 +3,7 @@ package dev.thelecrafter.dimensionz.scoreboardmanager.engine;
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.FileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
@@ -26,6 +27,7 @@ public class ScoreboardCreator {
             objective.getScore(line).setScore(index);
             index--;
         }
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         return scoreboard;
     }
 
