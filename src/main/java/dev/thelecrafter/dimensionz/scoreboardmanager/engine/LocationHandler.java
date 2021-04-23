@@ -1,11 +1,17 @@
 package dev.thelecrafter.dimensionz.scoreboardmanager.engine;
 
+import dev.thelecrafter.dimensionz.scoreboardmanager.ScoreboardManagerPlugin;
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.LocationFileManager;
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.ScoreboardFileManager;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.BoundingBox;
 
 import java.util.HashMap;
@@ -57,6 +63,15 @@ public class LocationHandler implements Listener {
                 event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")).setPrefix(displayName);
             }
         }
+        if (!event.getPlayer().getPersistentDataContainer().has(new NamespacedKey(ScoreboardManagerPlugin.INSTANCE, BOXES.get(box).substring(2).replace(" ", "_")), PersistentDataType.STRING)) {
+            event.getPlayer().getPersistentDataContainer().set(new NamespacedKey(ScoreboardManagerPlugin.INSTANCE, BOXES.get(box).substring(2).replace(" ", "_")), PersistentDataType.STRING, "true");
+            unlockNewPlace(event.getPlayer(), box);
+        }
+    }
+
+    public static void unlockNewPlace(Player player, BoundingBox place) {
+        player.sendTitle("§a§k1§r §aNeuer Ort §k1", BOXES.get(place), 5, 80, 10);
+        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.MASTER, 100, 1);
     }
 
 }
