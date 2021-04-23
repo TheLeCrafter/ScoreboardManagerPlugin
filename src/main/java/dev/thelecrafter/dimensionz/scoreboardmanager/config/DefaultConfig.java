@@ -51,6 +51,10 @@ public class DefaultConfig {
                 locations_config.set(keys + ".z2", "0");
                 LocationFileManager.save();
             }
+            if (!locations_config.contains(keys + ".priority")) {
+                locations_config.set(keys + ".priority", 0);
+                LocationFileManager.save();
+            }
         }
     }
 
