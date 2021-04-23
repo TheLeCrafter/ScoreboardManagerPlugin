@@ -21,10 +21,10 @@ public class ScoreboardCreator {
     public static Scoreboard createFromList(List<String> lines, String title) {
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("managerboard", "dummy", ChatColor.translateAlternateColorCodes('&', title));
+        Objective objective = scoreboard.registerNewObjective("managerboard", "dummy", title);
         int index = lines.size();
         for (String line : lines) {
-            objective.getScore(ChatColor.translateAlternateColorCodes('&', line)).setScore(index);
+            objective.getScore(line).setScore(index);
             index--;
         }
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
