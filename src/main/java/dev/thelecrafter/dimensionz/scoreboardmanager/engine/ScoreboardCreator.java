@@ -24,8 +24,8 @@ public class ScoreboardCreator {
         Objective objective = scoreboard.registerNewObjective("managerboard", "dummy", title);
         int index = lines.size() - 1;
         for (String line : lines) {
-            if (line.length() > 64) {
-                line = line.substring(0, 64);
+            if (line.length() > 40) {
+                line = line.substring(0, 40);
             }
             objective.getScore(line).setScore(index);
             index--;
