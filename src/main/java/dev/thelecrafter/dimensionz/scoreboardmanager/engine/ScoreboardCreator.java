@@ -20,7 +20,7 @@ public class ScoreboardCreator {
     public static Scoreboard createFromList(List<String> lines, String title) {
         ScoreboardManager manager = Bukkit.getScoreboardManager();
         Scoreboard scoreboard = manager.getNewScoreboard();
-        Objective objective = scoreboard.registerNewObjective("ScoreboardManagerPluginBoard", "dummy", ChatColor.translateAlternateColorCodes('&', title));
+        Objective objective = scoreboard.registerNewObjective("managerboard", "dummy", ChatColor.translateAlternateColorCodes('&', title));
         int index = lines.size();
         for (String line : lines) {
             objective.getScore(line).setScore(index);
