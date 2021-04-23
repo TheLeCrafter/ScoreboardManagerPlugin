@@ -1,6 +1,6 @@
 package dev.thelecrafter.dimensionz.scoreboardmanager.engine;
 
-import dev.thelecrafter.dimensionz.scoreboardmanager.config.FileManager;
+import dev.thelecrafter.dimensionz.scoreboardmanager.config.ScoreboardFileManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.scoreboard.*;
@@ -10,8 +10,8 @@ import java.util.List;
 public class ScoreboardCreator {
 
     public static Scoreboard createFromConfig() {
-        List<String> lines = FileManager.get().getStringList("lines");
-        String title = FileManager.get().getString("title");
+        List<String> lines = ScoreboardFileManager.get().getStringList("lines");
+        String title = ScoreboardFileManager.get().getString("title");
         return createFromList(lines, title);
     }
 
@@ -33,8 +33,8 @@ public class ScoreboardCreator {
 
     // Unfinished
     public static Scoreboard createFromConfigWithTeams() {
-        List<String> lines = FileManager.get().getStringList("lines");
-        String title = FileManager.get().getString("title");
+        List<String> lines = ScoreboardFileManager.get().getStringList("lines");
+        String title = ScoreboardFileManager.get().getString("title");
         return createFromListWithTeams(lines, title);
     }
 
@@ -62,6 +62,7 @@ public class ScoreboardCreator {
             colorIndex++;
             index--;
         }
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         return scoreboard;
     }
 

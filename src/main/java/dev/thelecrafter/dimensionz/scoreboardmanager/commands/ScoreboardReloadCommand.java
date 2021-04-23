@@ -1,6 +1,7 @@
 package dev.thelecrafter.dimensionz.scoreboardmanager.commands;
 
-import dev.thelecrafter.dimensionz.scoreboardmanager.config.FileManager;
+import dev.thelecrafter.dimensionz.scoreboardmanager.config.LocationFileManager;
+import dev.thelecrafter.dimensionz.scoreboardmanager.config.ScoreboardFileManager;
 import dev.thelecrafter.dimensionz.scoreboardmanager.engine.ScoreboardCreator;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -14,7 +15,8 @@ public class ScoreboardReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         sender.sendMessage(ChatColor.YELLOW + "Lade neu...");
-        FileManager.reload();
+        ScoreboardFileManager.reload();
+        LocationFileManager.reload();
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.setScoreboard(ScoreboardCreator.createFromConfig());
         }

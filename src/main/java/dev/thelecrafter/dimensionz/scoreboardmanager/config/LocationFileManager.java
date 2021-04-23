@@ -7,14 +7,14 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
-public class FileManager {
+public class LocationFileManager {
 
     private static File file;
     private static FileConfiguration customFile;
 
     // Finds or generates the custom file
     public static void setup() {
-        file = new File(ScoreboardManagerPlugin.INSTANCE.getDataFolder(), "scoreboard.yml");
+        file = new File(ScoreboardManagerPlugin.INSTANCE.getDataFolder(), "locations.yml");
 
         if(!file.exists()) {
             try {
@@ -38,7 +38,7 @@ public class FileManager {
         try {
             customFile.save(file);
         } catch (IOException e) {
-            System.out.println("Failed to save the scoreboard file!");
+            System.out.println("Failed to save the locations file!");
         }
     }
 
