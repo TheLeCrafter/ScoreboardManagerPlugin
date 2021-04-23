@@ -18,7 +18,7 @@ public class LocationHandler implements Listener {
 
     public static void setup() {
         for (String location_id : LocationFileManager.get().getKeys(false)) {
-            String location_name = LocationFileManager.get().getString(location_id + ".name");
+            String location_name = LocationFileManager.get().getString(location_id + ".display_name");
             BoundingBox box = new BoundingBox(
                     LocationFileManager.get().getInt(location_id + ".x1"),
                     LocationFileManager.get().getInt(location_id + ".y1"),
@@ -34,7 +34,7 @@ public class LocationHandler implements Listener {
     public static void onPlayerMove(PlayerMoveEvent event) {
         BoundingBox box = null;
         for (BoundingBox toCheck : BOXES.keySet()) {
-            if (toCheck.contains(event.getPlayer().getBoundingBox())) {
+            if (toCheck.contains(event.getTo().getX(), event.getTo().getY(), event.getTo().getZ())) {
                 box = toCheck;
             }
         }
@@ -42,7 +42,10 @@ public class LocationHandler implements Listener {
         if (box != null) {
             displayName = BOXES.get(box);
         }
-        event.getPlayer().getScoreboard().getTeam("line2").setPrefix(displayName);
+        event.getPlayer().getScoreboard();
+        if (event.getPlayer().getScoreboard().getTeam("line2") != null) {
+            event.getPlayer().getScoreboard().getTeam("line2").setPrefix(displayName);
+        }
     }
 
 }

@@ -17,6 +17,10 @@ public class DefaultConfig {
             scoreboard_config.set("lines", new String[]{"Highest line", "Mid line", "Lowest line"});
             ScoreboardFileManager.save();
         }
+        if (!scoreboard_config.contains("location_line")) {
+            scoreboard_config.set("location_line", 0);
+            ScoreboardFileManager.save();
+        }
         // locations.yml
         for (String keys : locations_config.getKeys(false)) {
             if (!locations_config.contains(keys + ".display_name")) {

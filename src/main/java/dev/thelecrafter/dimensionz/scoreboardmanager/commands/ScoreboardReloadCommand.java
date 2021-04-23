@@ -2,6 +2,7 @@ package dev.thelecrafter.dimensionz.scoreboardmanager.commands;
 
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.LocationFileManager;
 import dev.thelecrafter.dimensionz.scoreboardmanager.config.ScoreboardFileManager;
+import dev.thelecrafter.dimensionz.scoreboardmanager.engine.LocationHandler;
 import dev.thelecrafter.dimensionz.scoreboardmanager.engine.ScoreboardCreator;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -17,6 +18,7 @@ public class ScoreboardReloadCommand implements CommandExecutor {
         sender.sendMessage(ChatColor.YELLOW + "Lade neu...");
         ScoreboardFileManager.reload();
         LocationFileManager.reload();
+        LocationHandler.setup();
         for (Player player : Bukkit.getOnlinePlayers()) {
             player.setScoreboard(ScoreboardCreator.createFromConfig());
         }
