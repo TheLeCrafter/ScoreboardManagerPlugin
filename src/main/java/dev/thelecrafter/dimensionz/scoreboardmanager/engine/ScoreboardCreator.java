@@ -24,7 +24,7 @@ public class ScoreboardCreator {
         Objective objective = scoreboard.registerNewObjective("managerboard", "dummy", ChatColor.translateAlternateColorCodes('&', title));
         int index = lines.size();
         for (String line : lines) {
-            objective.getScore(line).setScore(index);
+            objective.getScore(ChatColor.translateAlternateColorCodes('&', line)).setScore(index);
             index--;
         }
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
