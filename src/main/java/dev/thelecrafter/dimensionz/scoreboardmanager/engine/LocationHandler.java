@@ -56,6 +56,10 @@ public class LocationHandler implements Listener {
         String displayName = ChatColor.DARK_GREEN + "Wildnis";
         if (box != null) {
             displayName = BOXES.get(box);
+            if (!event.getPlayer().getPersistentDataContainer().has(new NamespacedKey(ScoreboardManagerPlugin.INSTANCE, BOXES.get(box).substring(2).replace(" ", "_")), PersistentDataType.STRING)) {
+                event.getPlayer().getPersistentDataContainer().set(new NamespacedKey(ScoreboardManagerPlugin.INSTANCE, BOXES.get(box).substring(2).replace(" ", "_")), PersistentDataType.STRING, "true");
+                unlockNewPlace(event.getPlayer(), box);
+            }
         }
         event.getPlayer().getScoreboard();
         if (event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")) != null) {
@@ -63,14 +67,10 @@ public class LocationHandler implements Listener {
                 event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")).setPrefix(displayName);
             }
         }
-        if (!event.getPlayer().getPersistentDataContainer().has(new NamespacedKey(ScoreboardManagerPlugin.INSTANCE, BOXES.get(box).substring(2).replace(" ", "_")), PersistentDataType.STRING)) {
-            event.getPlayer().getPersistentDataContainer().set(new NamespacedKey(ScoreboardManagerPlugin.INSTANCE, BOXES.get(box).substring(2).replace(" ", "_")), PersistentDataType.STRING, "true");
-            unlockNewPlace(event.getPlayer(), box);
-        }
     }
 
     public static void unlockNewPlace(Player player, BoundingBox place) {
-        player.sendTitle("§a§k1§r §aNeuer Ort §k1", BOXES.get(place), 5, 80, 10);
+        player.sendTitle(BOXES.get(place),"§a§k1§r §aNeuer Ort §k1",5, 80, 10);
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.MASTER, 100, 1);
     }
 
