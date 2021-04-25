@@ -22,6 +22,7 @@ import java.util.Set;
 public class LocationHandler implements Listener {
 
     public static final Map<BoundingBox, String> BOXES = new HashMap<>();
+    public static final Map<BoundingBox, String> BOX_IDS = new HashMap<>();
     public static final Map<BoundingBox, Integer> BOX_PRIORITIES = new HashMap<>();
 
     public static void setup() {
@@ -34,6 +35,7 @@ public class LocationHandler implements Listener {
                     LocationFileManager.get().getInt(location_id + ".x2"),
                     LocationFileManager.get().getInt(location_id + ".y2"),
                     LocationFileManager.get().getInt(location_id + ".z2"));
+            BOXES.put(box, location_id);
             BOXES.put(box, location_name);
             BOX_PRIORITIES.put(box, LocationFileManager.get().getInt(location_id + ".priority"));
         }
@@ -61,12 +63,17 @@ public class LocationHandler implements Listener {
                 unlockNewPlace(event.getPlayer(), box);
             }
         }
-        event.getPlayer().getScoreboard();
-        if (event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")) != null) {
-            if (ScoreboardFileManager.get().getInt("location_line") >= 0) {
+        if (ScoreboardFileManager.get().getInt("location_line") >= 0) {
+            if (event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")) != null) {
                 event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")).setPrefix(displayName);
             }
         }
+        if (ScoreboardFileManager.get().getInt("special_information_line") >= 0) {
+            if (event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("special_information_line")) != null) {
+                event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("special_information_line")).setPrefix(SpecialInformationHandler.prefix(box));
+                event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("special_information_line")).setSuffix(SpecialInformationHandler.suffix(box));
+            }
+         }
     }
 
     public static void unlockNewPlace(Player player, BoundingBox place) {

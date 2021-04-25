@@ -18,7 +18,11 @@ public class DefaultConfig {
             ScoreboardFileManager.save();
         }
         if (!scoreboard_config.contains("location_line")) {
-            scoreboard_config.set("location_line", 0);
+            scoreboard_config.set("location_line", -1);
+            ScoreboardFileManager.save();
+        }
+        if (!scoreboard_config.contains("special_information_line")) {
+            scoreboard_config.set("special_information_line", -1);
             ScoreboardFileManager.save();
         }
         // locations.yml
