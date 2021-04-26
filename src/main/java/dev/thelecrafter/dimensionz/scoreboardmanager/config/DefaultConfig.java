@@ -59,6 +59,10 @@ public class DefaultConfig {
                 locations_config.set(keys + ".priority", 0);
                 LocationFileManager.save();
             }
+            if (!locations_config.contains(keys + ".special_information")) {
+                locations_config.set(keys + ".special_information", "");
+                LocationFileManager.save();
+            }
         }
     }
 
