@@ -10,9 +10,9 @@ public class SpecialInformationHandler {
             switch (LocationHandler.BOX_IDS.get(box)) {
                 case "tempel_tor":
                 case "tempel":
-                    return ChatColor.GOLD + "Tor Status: ";
+                    return ChatColor.GOLD + " Tor Status: ";
                 default:
-                    return ChatColor.DARK_GRAY + "Keine Informationen";
+                    return ChatColor.DARK_GRAY + " Keine Informationen";
             }
         } else return "";
     }

@@ -35,7 +35,7 @@ public class LocationHandler implements Listener {
                     LocationFileManager.get().getInt(location_id + ".x2"),
                     LocationFileManager.get().getInt(location_id + ".y2"),
                     LocationFileManager.get().getInt(location_id + ".z2"));
-            BOXES.put(box, location_id);
+            BOX_IDS.put(box, location_id);
             BOXES.put(box, location_name);
             BOX_PRIORITIES.put(box, LocationFileManager.get().getInt(location_id + ".priority"));
         }
