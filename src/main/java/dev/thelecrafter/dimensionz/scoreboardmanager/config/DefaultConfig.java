@@ -21,10 +21,6 @@ public class DefaultConfig {
             scoreboard_config.set("location_line", -1);
             ScoreboardFileManager.save();
         }
-        if (!scoreboard_config.contains("special_information_line")) {
-            scoreboard_config.set("special_information_line", -1);
-            ScoreboardFileManager.save();
-        }
         // locations.yml
         for (String keys : locations_config.getKeys(false)) {
             if (!locations_config.contains(keys + ".display_name")) {
@@ -57,10 +53,6 @@ public class DefaultConfig {
             }
             if (!locations_config.contains(keys + ".priority")) {
                 locations_config.set(keys + ".priority", 0);
-                LocationFileManager.save();
-            }
-            if (!locations_config.contains(keys + ".special_information")) {
-                locations_config.set(keys + ".special_information", "");
                 LocationFileManager.save();
             }
         }

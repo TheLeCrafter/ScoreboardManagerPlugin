@@ -62,11 +62,6 @@ public class LocationHandler implements Listener {
                 event.getPlayer().getPersistentDataContainer().set(new NamespacedKey(ScoreboardManagerPlugin.INSTANCE, BOXES.get(box).substring(2).replace(" ", "_")), PersistentDataType.STRING, "true");
                 unlockNewPlace(event.getPlayer(), box);
             }
-            if (ScoreboardFileManager.get().getInt("special_information_line") >= 0) {
-                if (event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("special_information_line")) != null) {
-                    event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("special_information_line")).setPrefix(" " + LocationFileManager.get().getString(BOX_IDS.get(box) + ".special_information"));
-                }
-            }
         }
         if (ScoreboardFileManager.get().getInt("location_line") >= 0) {
             if (event.getPlayer().getScoreboard().getTeam("line" + ScoreboardFileManager.get().getInt("location_line")) != null) {
